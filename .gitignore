@@ -1,0 +1,44 @@
+# === General ===
+*.log
+*.lock
+.DS_Store
+Thumbs.db
+
+# === IDE/Editor ===
+.vscode/
+.idea/
+*.iml
+*.swp
+
+# === Backend (Node.js) ===
+# Dependency directories
+neon_tetris_backend/node_modules/
+# Environment variables (Crucial!)
+neon_tetris_backend/.env
+neon_tetris_backend/.env.*
+!neon_tetris_backend/.env.example
+# Logs
+neon_tetris_backend/npm-debug.log*
+neon_tetris_backend/yarn-debug.log*
+neon_tetris_backend/yarn-error.log*
+# Build outputs (if any)
+neon_tetris_backend/dist/
+neon_tetris_backend/build/
+# Temporary upload folder
+neon_tetris_backend/public/temp/
+
+# === Frontend (Flutter) ===
+# Environment variables (Crucial!)
+neon_tetris_frontend/.env
+# Flutter/Dart build outputs
+neon_tetris_frontend/build/
+neon_tetris_frontend/.dart_tool/
+neon_tetris_frontend/.packages
+neon_tetris_frontend/pubspec.lock
+# Flutter tool files
+neon_tetris_frontend/.flutter-plugins
+neon_tetris_frontend/.flutter-plugins-dependencies
+
+# --- Optional: If you don't intend to build mobile ---
+# neon_tetris_frontend/ios/
+# neon_tetris_frontend/android/
