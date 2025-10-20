@@ -39,13 +39,13 @@ const registerUser = asyncHandler(async (req, res) => {
     const hashedOtp = await bcrypt.hash(rawOtp, 10);
 
     await OtpToken.create({ email, otp: hashedOtp });
-
+    console.log("sending otp");
     await sendEmail({
       to: email,
       subject: "Your OTP for NeonTetris",
       text: `Your OTP is ${rawOtp}. It will expire in 5 minutes.`,
     });
-
+    console.log("sent otp");
     return res
       .status(200)
       .json(new apiResponse(200, null, "OTP sent successfully"));
