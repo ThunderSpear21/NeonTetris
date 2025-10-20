@@ -7,7 +7,8 @@ import {
   refreshAccessToken,
   registerUser,
   updateAccountDetails,
-  getLeaderboard
+  getLeaderboard,
+  pingServer
 } from "../controllers/auth_controller.js";
 import { verifyJWT } from "../middlewares/auth_middleware.js";
 import { upload } from "../middlewares/multer_middleware.js";
@@ -35,5 +36,7 @@ router
   );
 
 router.route("/get-leaderboard").get(verifyJWT, getLeaderboard);
+
+router.route("/ping").get(pingServer);
 
 export default router;

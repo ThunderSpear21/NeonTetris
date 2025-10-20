@@ -288,6 +288,11 @@ const getLeaderboard = asyncHandler(async (req, res) => {
       new apiResponse(200, leaderboard, "Leaderboard fetched successfully !!")
     );
 });
+
+const pingServer = asyncHandler(async (req,res) => {
+  return res.status(200).json(new apiResponse(200, {}, "Server up and running !"));
+});
+
 export {
   registerUser,
   loginUser,
@@ -297,4 +302,5 @@ export {
   getCurrentUser,
   updateAccountDetails,
   getLeaderboard,
+  pingServer
 };
