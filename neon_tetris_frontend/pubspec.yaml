@@ -53,3 +53,13 @@ flutter:
       fonts:
         - asset: assets/Orbitron-Regular.ttf
         # - asset: assets/Orbitron.ttf
+  
+flutter_launcher_icons:
+  image_path: "assets/neon-tetris-1.png"
+  android: false
+  ios: false
+  web:
+    generate: true
+    image_path: "assets/neon-tetris-1.png"
+    background_color: "#FFFFFF" 
+    theme_color: "#000000"

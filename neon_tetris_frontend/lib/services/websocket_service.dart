@@ -37,7 +37,7 @@ class WebSocketService {
 
  void disconnect() {
     if (_channel != null) {
-      print('Disconnecting from WebSocket...');
+      //print('Disconnecting from WebSocket...');
       _channel!.sink.close();
       _channel = null;
     }
@@ -45,7 +45,7 @@ class WebSocketService {
 
   void sendMessage(String event, Map<String, dynamic> payload) {
     if (_channel == null || _channel!.closeCode != null) {
-      print('Cannot send message, WebSocket is not connected.');
+      //print('Cannot send message, WebSocket is not connected.');
       return;
     }
     final message = jsonEncode({'event': event, 'payload': payload});
