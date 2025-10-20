@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:neon_tetris_frontend/constants.dart';
 import 'package:neon_tetris_frontend/models/live_standing_model.dart';
 import 'package:neon_tetris_frontend/models/user_model.dart';
 import 'package:neon_tetris_frontend/services/session_manager.dart';
 
 class GameService {
-  final String _baseUrl = dotenv.env['BASE_URL']!;
+  final String _baseUrl = BASE_URL;
 
   dynamic _handleResponse(http.Response response) {
     final data = jsonDecode(response.body);

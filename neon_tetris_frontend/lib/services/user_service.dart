@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:neon_tetris_frontend/constants.dart';
 import 'package:neon_tetris_frontend/models/leaderboard_entry_model.dart';
 import '../models/user_model.dart';
 import 'session_manager.dart';
 
 class UserService {
-  static String baseUrl = dotenv.env['BASE_URL']!;
+  static final String baseUrl = BASE_URL;
   static final _baseUrl = '$baseUrl/auth';
 
   static dynamic _handleResponse(http.Response response) {

@@ -81,7 +81,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   let { email, password } = req.body;
-  console.log(email, " ", password);
   if (!email?.trim()) throw new apiError(400, "Email is required");
   if (!password?.trim()) throw new apiError(400, "Password is required");
 
@@ -93,7 +92,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const isPasswordValid = await currentUser.isPasswordCorrect(password);
   if (!isPasswordValid) throw new apiError(401, "Wrong Password");
-  console.log(currentUser);
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     currentUser._id
   );
