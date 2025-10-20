@@ -1,29 +1,22 @@
-import mailgun from 'mailgun.js';
-import formData from 'form-data';
-
-const mg = new mailgun(formData).client({
-    username: 'api',
-    key: process.env.MAILGUN_API_KEY,
-});
+import nodemailer from "nodemailer";
 
 export const sendEmail = async ({ to, subject, text }) => {
-    if (!to || !subject || !text) {
-        throw new Error("Missing required email fields");
-    }
+  if (!to || !subject || !text) throw new Error("Missing email fields");
+  console.log(process.env.SMTP_USER, " ", process.env.SMTP_PASS);
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.SMTP_USER, 
+      pass: process.env.SMTP_PASS,
+    },
+  });
 
-    const data = {
-        from: `Neon Tetris <noreply@${process.env.MAILGUN_DOMAIN}>`,
-        to: to,
-        subject: subject,
-        text: text,
-    };
+  const mailOptions = {
+    from: `"Neon-Tetris" <${process.env.SMTP_USER}>`,
+    to,
+    subject,
+    text,
+  };
 
-    try {
-        console.log("Attempting to send email via Mailgun...");
-        const response = await mg.messages.create(process.env.MAILGUN_DOMAIN, data);
-        console.log("✅ Email sent successfully via Mailgun:", response);
-    } catch (error) {
-        console.error("❌ Mailgun sending error:", error);
-        throw new Error("Failed to send OTP email.");
-    }
+  await transporter.sendMail(mailOptions);
 };

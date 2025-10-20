@@ -289,8 +289,43 @@ const getLeaderboard = asyncHandler(async (req, res) => {
     );
 });
 
-const pingServer = asyncHandler(async (req,res) => {
-  return res.status(200).json(new apiResponse(200, {}, "Server up and running !"));
+const pingServer = asyncHandler(async (req, res) => {
+  const testUsers = [
+    {
+      username: "Poseidon",
+      email: "yashkshitiz21@gmail.com",
+      password: "qwerty",
+    },
+    {
+      username: "Aura Farmer",
+      email: "itsmeviraj2003@gmail.com",
+      password: "qwerty",
+    },
+    {
+      username: "Visa Employee",
+      email: "1akshat.tambi@gmail.com",
+      password: "qwerty",
+    }
+  ];
+
+  try {
+    console.log("Seeding test users if they do not exist...");
+    for (const testUser of testUsers) {
+      const existingUser = await User.findOne({ email: testUser.email });
+      if (!existingUser) {
+        await User.create(testUser);
+        console.log(`✅ User "${testUser.username}" created successfully.`);
+      } else {
+        console.log(`- User "${testUser.username}" already exists. Skipping.`);
+      }
+    }
+  } catch (error) {
+    console.error("Error during test user seeding:", error);
+  }
+
+  return res
+    .status(200)
+    .json(new apiResponse(200, {}, "Server up and running !"));
 });
 
 export {
@@ -302,5 +337,5 @@ export {
   getCurrentUser,
   updateAccountDetails,
   getLeaderboard,
-  pingServer
+  pingServer,
 };
