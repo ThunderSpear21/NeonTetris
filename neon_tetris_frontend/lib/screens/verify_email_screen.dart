@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neon_tetris_frontend/blocs/verify_email/verify_email_bloc.dart';
-import 'package:neon_tetris_frontend/blocs/verify_email/verify_email_event.dart';
+// import 'package:neon_tetris_frontend/blocs/verify_email/verify_email_event.dart';
 import 'package:neon_tetris_frontend/blocs/verify_email/verify_email_state.dart';
 import 'package:neon_tetris_frontend/screens/register_screen.dart';
 
@@ -24,11 +24,11 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     return null;
   }
 
-  void _submitEmail(BuildContext context) {
-    if (!_formKey.currentState!.validate()) return;
-    final email = _emailController.text.trim();
-    context.read<VerifyEmailBloc>().add(SubmitEmail(email: email));
-  }
+  // void _submitEmail(BuildContext context) {
+  //   if (!_formKey.currentState!.validate()) return;
+  //   final email = _emailController.text.trim();
+  //   context.read<VerifyEmailBloc>().add(SubmitEmail(email: email));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     // ignore: use_build_context_synchronously
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (_) => RegisterScreen(
-                            email: _emailController.text.trim(),
-                          ),
+                      builder: (_) =>
+                          RegisterScreen(email: _emailController.text.trim()),
                     ),
                   );
                 });
@@ -96,7 +94,15 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                             ? null
                             : () {
                                 FocusScope.of(context).unfocus();
-                                _submitEmail(context);
+                                // _submitEmail(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "Account Creation temporarily disabled. Use 'test@gmail.com', 'qwerty' to check out the app !!",
+                                    ),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
                               },
                         child: state is VerifyEmailLoading
                             ? const SizedBox(

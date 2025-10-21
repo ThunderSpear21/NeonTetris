@@ -58,18 +58,12 @@ class AuthService {
   }
 
   static Future<User> login(String email, String password) async {
-    print("calling api");
-    print(email);
-    print(password);
-    print(_baseUrl);
     final response = await http.post(
       Uri.parse('$_baseUrl/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'email': email, 'password': password}),
     );
-    print(response.toString());
     final responseData = jsonDecode(response.body);
-    print(responseData.toString());
     if (response.statusCode == 200 && responseData['success'] == true) {
       final data = responseData['data'];
 

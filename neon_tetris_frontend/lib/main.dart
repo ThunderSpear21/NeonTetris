@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neon_tetris_frontend/blocs/leaderboard/leaderboard_bloc.dart';
 import 'package:neon_tetris_frontend/blocs/profile/profile_bloc.dart';
+import 'package:neon_tetris_frontend/constants.dart';
 import 'package:neon_tetris_frontend/services/game_service.dart';
 import 'package:provider/provider.dart';
 import 'package:neon_tetris_frontend/blocs/auth/auth_bloc.dart';
@@ -65,11 +66,10 @@ class MyApp extends StatelessWidget {
           if (state is Authenticated) {
             final token = await SessionManager.getAccessToken();
             if (token != null) {
-              final httpUri = Uri.parse(dotenv.env['BASE_URL']!);
+              final httpUri = Uri.parse(BASE_URL);
               final wsUrl = Uri(
-                scheme: 'ws',
+                scheme: 'wss',
                 host: httpUri.host,
-                port: httpUri.port,
                 path: '/ws',
                 queryParameters: {'token': token},
               ).toString();
