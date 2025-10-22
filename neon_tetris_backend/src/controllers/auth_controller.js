@@ -319,6 +319,11 @@ const pingServer = asyncHandler(async (req, res) => {
       username: "Testing Account",
       email: "test@gmail.com",
       password: "qwerty"
+    },
+    {
+      username: "Nyxie",
+      email: "vantekimnosh@gmail.com",
+      password: "qwerty"
     }
   ];
 
